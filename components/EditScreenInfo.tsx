@@ -231,7 +231,7 @@ export default function EditScreenInfo(props: any) {
         if (current3Value == figureValue) {
           temp = (
             <View style={styles.tipContainer}>
-              <Text>{tableOne.length + 2}</Text>
+              <Text style={styles.textStyle}>{tableOne.length + 2}</Text>
               <Image
                 style={styles.imageContainer1}
                 source={require("../assets/images/girl.png")}
@@ -241,7 +241,7 @@ export default function EditScreenInfo(props: any) {
         } else {
           temp = (
             <View style={styles.tipContainer}>
-              <Text>{tableOne.length + 2}</Text>
+              <Text style={styles.textStyle}>{tableOne.length + 2}</Text>
               <Image
                 style={styles.imageContainer1}
                 source={require("../assets/images/boy.png")}
@@ -253,7 +253,7 @@ export default function EditScreenInfo(props: any) {
         if (current3Value == figureValue) {
           temp = (
             <View style={styles.tipContainer}>
-              <Text>{tableOne.length + 2}</Text>
+              <Text style={styles.textStyle}>{tableOne.length + 2}</Text>
               <Image
                 style={styles.imageContainer1}
                 source={require("../assets/images/boy.png")}
@@ -263,7 +263,7 @@ export default function EditScreenInfo(props: any) {
         } else {
           temp = (
             <View style={styles.tipContainer}>
-              <Text>{tableOne.length + 2}</Text>
+              <Text style={styles.textStyle}>{tableOne.length + 2}</Text>
               <Image
                 style={styles.imageContainer1}
                 source={require("../assets/images/girl.png")}
@@ -371,25 +371,28 @@ export default function EditScreenInfo(props: any) {
 
   return (
     <Swiper>
-      <ImageBackground  style={{flex:1}} source={require('../assets/images/bg.png')}>
-      <View style={styles.inputContainer}>
-        <View style={styles.inputContainer1}></View>
-        <View style={styles.inputContainer2}>
-        <View style={styles.inputStyle}>
-          <Text>{tips}</Text>
-        </View>
-        <View style={styles.inputStyle}>
-          {/* <Button title="清除" onPress={() => clearAll()}>
+      <ImageBackground
+        style={{ flex: 1 }}
+        source={require("../assets/images/bg.png")}
+      >
+        <View style={styles.inputContainer}>
+          <View style={styles.inputContainer1}></View>
+          <View style={styles.inputContainer2}>
+            <View style={styles.inputStyle}>
+              <Text>{tips}</Text>
+            </View>
+            <View style={styles.inputStyle}>
+              {/* <Button title="清除" onPress={() => clearAll()}>
               清除
             </Button> */}
-          <TouchableOpacity onPress={() => handleInput("XIN")}>
-            <Image
-              style={styles.imageContainer1}
-              source={require("../assets/images/xin1.png")}
-            />
-          </TouchableOpacity>
-        </View>
-        {/* <View
+              <TouchableOpacity onPress={() => handleInput("XIN")}>
+                <Image
+                  style={styles.imageContainer1}
+                  source={require("../assets/images/xin1.png")}
+                />
+              </TouchableOpacity>
+            </View>
+            {/* <View
           style={{
             width: "100%",
             height: "20%",
@@ -399,8 +402,8 @@ export default function EditScreenInfo(props: any) {
         >
           <Text>{tableOne.length + 1}</Text>
         </View> */}
-        <View style={styles.inputStyle}>
-          {/* <Text>BOY</Text>
+            <View style={styles.inputStyle}>
+              {/* <Text>BOY</Text>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={inputValue === "BOY" ? "#f5dd4b" : "#f4f3f4"}
@@ -408,15 +411,15 @@ export default function EditScreenInfo(props: any) {
               onValueChange={() => setInputValue("BOY")}
               value={inputValue === "BOY"}
             /> */}
-          <TouchableOpacity onPress={() => handleInput("BOY")}>
-            <Image
-              style={styles.imageContainer1}
-              source={require("../assets/images/boy1.png")}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.inputStyle}>
-          {/* <Text>GIRL</Text>
+              <TouchableOpacity onPress={() => handleInput("BOY")}>
+                <Image
+                  style={styles.imageContainer1}
+                  source={require("../assets/images/boy1.png")}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.inputStyle}>
+              {/* <Text>GIRL</Text>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={inputValue === "GIRL" ? "#f5dd4b" : "#f4f3f4"}
@@ -424,21 +427,20 @@ export default function EditScreenInfo(props: any) {
               onValueChange={() => setInputValue("GIRL")}
               value={inputValue === "GIRL"}
             /> */}
-          <TouchableOpacity onPress={() => handleInput("GIRL")}>
-          <View style={styles.tipContainer}>
-              <Text>{tableOne.length + 1}</Text>
-              <Image
-                style={styles.imageContainer1}
-                source={require("../assets/images/girl.png")}
-              />
+              <TouchableOpacity onPress={() => handleInput("GIRL")}>
+                <View style={styles.tipContainer}>
+                  <Text style={styles.textStyle}>{tableOne.length + 1}</Text>
+                  <Image
+                    style={styles.imageContainer1}
+                    source={require("../assets/images/girl1.png")}
+                  />
+                </View>
+              </TouchableOpacity>
             </View>
-          </TouchableOpacity>
+          </View>
         </View>
-        </View>
-        
-      </View>
       </ImageBackground>
-      
+
       <ScrollView
         style={{
           height: "100%",
@@ -449,9 +451,9 @@ export default function EditScreenInfo(props: any) {
           style={{
             flexDirection: "column",
             flexWrap: "wrap",
-            height: 50,
+            height: 80,
             width: "100%",
-            paddingTop: 10,
+            paddingTop: 30,
           }}
         >
           <View style={styles.inputStyle1}>
@@ -471,21 +473,21 @@ export default function EditScreenInfo(props: any) {
             </Button>
           </View>
           <View style={styles.inputStyle1}>
-          <Text>{tips}</Text>
-        </View>
-        <View style={styles.inputStyle1}>
-          {/* <Button title="清除" onPress={() => clearAll()}>
+            <Text>{tips}</Text>
+          </View>
+          <View style={styles.inputStyle1}>
+            {/* <Button title="清除" onPress={() => clearAll()}>
               清除
             </Button> */}
-          <TouchableOpacity onPress={() => handleInput("XIN")}>
-            <Image
-              style={styles.imageContainer1}
-              source={require("../assets/images/xin1.png")}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.inputStyle1}>
-          {/* <Text>BOY</Text>
+            <TouchableOpacity onPress={() => handleInput("XIN")}>
+              <Image
+                style={styles.imageContainer1}
+                source={require("../assets/images/xin1.png")}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.inputStyle1}>
+            {/* <Text>BOY</Text>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={inputValue === "BOY" ? "#f5dd4b" : "#f4f3f4"}
@@ -493,16 +495,16 @@ export default function EditScreenInfo(props: any) {
               onValueChange={() => setInputValue("BOY")}
               value={inputValue === "BOY"}
             /> */}
-          <TouchableOpacity onPress={() => handleInput("BOY")}>
-            <Image
-              style={styles.imageContainer1}
-              source={require("../assets/images/boy1.png")}
-            />
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity onPress={() => handleInput("BOY")}>
+              <Image
+                style={styles.imageContainer1}
+                source={require("../assets/images/boy1.png")}
+              />
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.inputStyle1}>
-          {/* <Text>GIRL</Text>
+          <View style={styles.inputStyle1}>
+            {/* <Text>GIRL</Text>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={inputValue === "GIRL" ? "#f5dd4b" : "#f4f3f4"}
@@ -510,16 +512,16 @@ export default function EditScreenInfo(props: any) {
               onValueChange={() => setInputValue("GIRL")}
               value={inputValue === "GIRL"}
             /> */}
-          <TouchableOpacity onPress={() => handleInput("GIRL")}>
-          <View style={styles.tipContainer}>
-              <Text>{tableOne.length + 1}</Text>
-              <Image
-                style={styles.imageContainer1}
-                source={require("../assets/images/girl.png")}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity onPress={() => handleInput("GIRL")}>
+              <View style={styles.tipContainer}>
+                <Text style={styles.textStyle}>{tableOne.length + 1}</Text>
+                <Image
+                  style={styles.imageContainer1}
+                  source={require("../assets/images/girl1.png")}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* <View>
@@ -604,12 +606,18 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0)",
   },
   inputStyle1: {
-    width: "16.667",
+    width: "16.667%",
     height: 40,
     alignItems: "center",
     justifyContent: "center",
+  },
+  textStyle: {
+    position: "absolute",
+    top: -20,
+    color: "#0f0",
   },
   mainContainer: {
     maxHeight: "100%",
@@ -620,8 +628,8 @@ const styles = StyleSheet.create({
     height: 32,
   },
   imageContainer1: {
-    width: 40,
-    height: 40,
+    width: 48,
+    height: 48,
   },
   tipContainer: {
     alignItems: "center",
@@ -633,13 +641,15 @@ const styles = StyleSheet.create({
     // padding: 20,
     height: "100%",
     width: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0)",
   },
   inputContainer1: {
     flexDirection: "column",
     flexWrap: "wrap",
     // justifyContent: "space-around",
     // padding: 20,
-    height: "70%",
+    backgroundColor: "rgba(0, 0, 0, 0)",
+    height: "80%",
     width: "100%",
   },
   inputContainer2: {
@@ -647,7 +657,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     // justifyContent: "space-around",
     // padding: 20,
-    height: "30%",
+    height: "20%",
+    backgroundColor: "rgba(0, 0, 0, 0)",
     width: "100%",
   },
   tableTwoContainer: {
@@ -661,7 +672,7 @@ const styles = StyleSheet.create({
     height: 560,
     display: "flex",
     flexWrap: "wrap",
-    paddingTop: 20,
+    paddingTop: 40,
   },
   enableIcon: {
     height: 40,
