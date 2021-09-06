@@ -230,20 +230,20 @@ export default function EditScreenInfo(props: any) {
       if (lastLen === currentLen) {
         if (current3Value == figureValue) {
           temp = (
-            <View>
+            <View style={styles.tipContainer}>
               <Text>{tableOne.length + 2}</Text>
               <Image
-                style={styles.imageContainer}
+                style={styles.imageContainer1}
                 source={require("../assets/images/girl.png")}
               />
             </View>
           );
         } else {
           temp = (
-            <View>
+            <View style={styles.tipContainer}>
               <Text>{tableOne.length + 2}</Text>
               <Image
-                style={styles.imageContainer}
+                style={styles.imageContainer1}
                 source={require("../assets/images/boy.png")}
               />
             </View>
@@ -252,20 +252,20 @@ export default function EditScreenInfo(props: any) {
       } else {
         if (current3Value == figureValue) {
           temp = (
-            <View>
+            <View style={styles.tipContainer}>
               <Text>{tableOne.length + 2}</Text>
               <Image
-                style={styles.imageContainer}
+                style={styles.imageContainer1}
                 source={require("../assets/images/boy.png")}
               />
             </View>
           );
         } else {
           temp = (
-            <View>
+            <View style={styles.tipContainer}>
               <Text>{tableOne.length + 2}</Text>
               <Image
-                style={styles.imageContainer}
+                style={styles.imageContainer1}
                 source={require("../assets/images/girl.png")}
               />
             </View>
@@ -371,8 +371,10 @@ export default function EditScreenInfo(props: any) {
 
   return (
     <Swiper>
-      <ImageBackground  style={{flex:1}} source={require('../assets/images/xin1.png')}>
+      <ImageBackground  style={{flex:1}} source={require('../assets/images/bg.png')}>
       <View style={styles.inputContainer}>
+        <View style={styles.inputContainer1}></View>
+        <View style={styles.inputContainer2}>
         <View style={styles.inputStyle}>
           <Text>{tips}</Text>
         </View>
@@ -387,7 +389,7 @@ export default function EditScreenInfo(props: any) {
             />
           </TouchableOpacity>
         </View>
-        <View
+        {/* <View
           style={{
             width: "100%",
             height: "20%",
@@ -396,7 +398,7 @@ export default function EditScreenInfo(props: any) {
           }}
         >
           <Text>{tableOne.length + 1}</Text>
-        </View>
+        </View> */}
         <View style={styles.inputStyle}>
           {/* <Text>BOY</Text>
             <Switch
@@ -423,12 +425,17 @@ export default function EditScreenInfo(props: any) {
               value={inputValue === "GIRL"}
             /> */}
           <TouchableOpacity onPress={() => handleInput("GIRL")}>
-            <Image
-              style={styles.imageContainer1}
-              source={require("../assets/images/girl1.png")}
-            />
+          <View style={styles.tipContainer}>
+              <Text>{tableOne.length + 1}</Text>
+              <Image
+                style={styles.imageContainer1}
+                source={require("../assets/images/girl.png")}
+              />
+            </View>
           </TouchableOpacity>
         </View>
+        </View>
+        
       </View>
       </ImageBackground>
       
@@ -448,8 +455,8 @@ export default function EditScreenInfo(props: any) {
           }}
         >
           <View style={styles.inputStyle1}>
-            <Button title="重新开始" onPress={() => clearAll()}>
-              重新开始
+            <Button title="重开" onPress={() => clearAll()}>
+              重开
             </Button>
           </View>
           <View style={styles.inputStyle1}>
@@ -459,10 +466,60 @@ export default function EditScreenInfo(props: any) {
                 source={require("../assets/images/back.png")}
               />
             </TouchableOpacity> */}
-            <Button title="回退一步" onPress={() => backOne()}>
+            <Button title="回退" onPress={() => backOne()}>
               回退
             </Button>
           </View>
+          <View style={styles.inputStyle1}>
+          <Text>{tips}</Text>
+        </View>
+        <View style={styles.inputStyle1}>
+          {/* <Button title="清除" onPress={() => clearAll()}>
+              清除
+            </Button> */}
+          <TouchableOpacity onPress={() => handleInput("XIN")}>
+            <Image
+              style={styles.imageContainer1}
+              source={require("../assets/images/xin1.png")}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.inputStyle1}>
+          {/* <Text>BOY</Text>
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={inputValue === "BOY" ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={() => setInputValue("BOY")}
+              value={inputValue === "BOY"}
+            /> */}
+          <TouchableOpacity onPress={() => handleInput("BOY")}>
+            <Image
+              style={styles.imageContainer1}
+              source={require("../assets/images/boy1.png")}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.inputStyle1}>
+          {/* <Text>GIRL</Text>
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={inputValue === "GIRL" ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={() => setInputValue("GIRL")}
+              value={inputValue === "GIRL"}
+            /> */}
+          <TouchableOpacity onPress={() => handleInput("GIRL")}>
+          <View style={styles.tipContainer}>
+              <Text>{tableOne.length + 1}</Text>
+              <Image
+                style={styles.imageContainer1}
+                source={require("../assets/images/girl.png")}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
         </View>
 
         {/* <View>
@@ -543,13 +600,13 @@ function TableThree(props: { tableData: Array<Array<string>> }) {
 
 const styles = StyleSheet.create({
   inputStyle: {
-    width: "50%",
-    height: "40%",
+    width: "25%",
+    height: "100%",
     alignItems: "center",
     justifyContent: "center",
   },
   inputStyle1: {
-    width: "50%",
+    width: "16.667",
     height: 40,
     alignItems: "center",
     justifyContent: "center",
@@ -563,8 +620,11 @@ const styles = StyleSheet.create({
     height: 32,
   },
   imageContainer1: {
-    width: 64,
-    height: 64,
+    width: 40,
+    height: 40,
+  },
+  tipContainer: {
+    alignItems: "center",
   },
   inputContainer: {
     flexDirection: "row",
@@ -572,6 +632,22 @@ const styles = StyleSheet.create({
     // justifyContent: "space-around",
     // padding: 20,
     height: "100%",
+    width: "100%",
+  },
+  inputContainer1: {
+    flexDirection: "column",
+    flexWrap: "wrap",
+    // justifyContent: "space-around",
+    // padding: 20,
+    height: "70%",
+    width: "100%",
+  },
+  inputContainer2: {
+    flexDirection: "column",
+    flexWrap: "wrap",
+    // justifyContent: "space-around",
+    // padding: 20,
+    height: "30%",
     width: "100%",
   },
   tableTwoContainer: {
