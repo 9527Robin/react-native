@@ -8,7 +8,7 @@ import EditScreenInfo from "./components/EditScreenInfo";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
-import { LoginScreen } from "./screens/LoginScreen";
+// import { LoginScreen } from "./screens/LoginScreen";
 const Stack = createStackNavigator();
 export default function App() {
   const isLoadingComplete = useCachedResources();

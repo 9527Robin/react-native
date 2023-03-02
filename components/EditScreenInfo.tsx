@@ -9,6 +9,7 @@ import {
   ScrollView,
   Button,
   ImageBackground,
+  Modal,
 } from "react-native";
 
 import Colors from "../constants/Colors";
@@ -16,6 +17,7 @@ import { MonoText } from "./StyledText";
 import { Text, View } from "./Themed";
 import _ from "lodash";
 import Swiper from "react-native-swiper";
+// import RequestController from "../api/service";
 
 export default function EditScreenInfo(props: any) {
   const numbers: number = 84;
@@ -26,6 +28,26 @@ export default function EditScreenInfo(props: any) {
   const [tableThree, setTableThree] = React.useState<Array<Array<string>>>([]);
   const [result, setResult] = React.useState<Array<string>>([]);
   const [tips, setTips] = React.useState<any>(null);
+  // const [modalVisible, setModalVisible] = React.useState(false);
+  // React.useEffect(() => {
+  //   checkCode();
+  // }, []);
+
+  // async function checkCode() {
+  //   const result = await RequestController.checkCode({ code: "667" });
+  //   const serverTime = _.get(result, ["data", "data", "timeStamp"]);
+  //   if (_.get(result, ["data", "returnCode"]) === 0) {
+  //     if (serverTime) {
+  //       const localTime = new Date().getTime();
+  //       const time = new Date(serverTime).getTime();
+  //       if (localTime > time) {
+  //         setModalVisible(true);
+  //       } else {
+  //         setModalVisible(false);
+  //       }
+  //     }
+  //   }
+  // }
 
   function renderFunction() {
     const el = [];
@@ -111,49 +133,62 @@ export default function EditScreenInfo(props: any) {
     const res = _.cloneDeep(three || result);
     const preValue = _.get(one, one.length - 2); // 前一个值
     let temp = "";
-    const len = two.length - 1; // 当前界面二的长度
+    //const len = two.length - 1; // 当前界面二的长度,旧版
+    const len = two.length;
     //const len1 = two[len - 1].length - 1; //
-
-    const cur_len = two[len].length - 1;
+    //const cur_len = two[len].length - 1;//表格二当前列的长度 旧
+    const cur_len = two[len-1].length; //表格二当前长度
     // 当性别变化
-    if ((len > 0 && two[1].length > 1) || len > 1) {
-      const len1 = two[len - 1]["length"] - 1; // 上一列的长度
-      const compareValue = _.get(two, [len - 1, cur_len]); // 表格二的当前值
-      const compareValue1 = _.get(two, [len - 1, cur_len + 1]); // 后一个的值
-      const compareValue2 = _.get(two, [len - 1, cur_len - 1]); // 前1个的值
+    if ((len > 2 && two[2].length > 1) || len > 3) {      //现在要去从第二界面第三列第二个开始
+      
+      const compareValue = _.get(two, [len - 3, cur_len - 1]); // 表格二的当前值的对应位置的前两列的值
+      const len1 = two[len - 2]["length"] ; // 上一列的长度
+      const len2 = two[len - 3]["length"] ; // 上一列的上一列的长度
+      const len4 = cur_len - len2; //当前列与对应列的差
+      
+      let len3;
+      if(len > 3)
+      {
+        len3 = two[len - 4]["length"] ; // 上一列的上一列的上一列的长度;
+      }
+      
+      
+      
+      //const compareValue = _.get(two, [len - 1, cur_len-1]); // 表格二的当前值
+      //const cur_len1 = two[len-3].length;//
+      
+      //const compareValue2 = _.get(two, [len - 1, cur_len - 1]); // 前1个的值
       //const compareValue3 = _.get(two, [len - 1, cur_len - 2]); // 前1个的值
-      if (preValue !== value) {
-        // const compareValue2 = _.get(tableTwo, [len - 2, len1 - 1]); // 前俩个的值
-        const len2 = two[len - 2].length - 1;
-
-        if (res[res.length - 1] === "CAT") {
-          if (len2 >= len1) {
-            if (len2 == len1) {
-              temp = "CAT";
-            } else {
-              temp = "DOG";
-            }
-          } else {
-            temp = "DOG";
-          }
-        } else {
-          if (len1 == len2 && len2 == 0) {
-            temp = "CAT";
-          } else {
-            temp = "DOG";
-          }
+      if(cur_len>1)
+      {
+        if(compareValue)
+        {
+          temp  = "CAT";
         }
-      } else {
-        if (compareValue) {
-          temp = "CAT";
-        } else {
-          if (compareValue2) {
-            temp = "DOG";
-          } else {
-            temp = "CAT";
+        else
+        {
+          if(len4 == 1)
+          {
+            temp  = "DOG";
+          }
+          else
+          {
+            temp  = "CAT";
           }
         }
       }
+      else
+      {
+        if(len1 == len3)
+        {
+          temp  = "CAT";
+        }
+        else
+        {
+          temp  = "DOG";
+        }
+      }
+
       if (flag) return temp;
       res.push(temp);
       setResult(res);
@@ -370,12 +405,62 @@ export default function EditScreenInfo(props: any) {
   }
 
   return (
-    <Swiper>
+    <Swiper 
+    loop={false}
+    // showsButtons={true}
+    // index={1}
+   >
       <ImageBackground
         style={{ flex: 1 }}
-        source={require("../assets/images/bg.png")}
+        source={require("../assets/images/bg.jpg")}
       >
+        {/* <View style={styles.centeredView}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}>
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>使用时间到期</Text> 
+              </View>
+            </View>
+          </Modal>
+        </View> */}
+        <View style={styles.operateContainer}>
+        <View style={styles.inputStyle1}>
+        <TouchableOpacity onPress={() => clearAll()}>
+                <Image
+                  style={styles.weixinImage}
+                  source={require("../assets/images/bili.png")}
+                />
+              </TouchableOpacity>
+            {/* <Button title="重开" onPress={() => clearAll()}>
+              重开
+            </Button> */}
+          </View>
+          <View style={styles.inputStyle1}>
+            {/* <TouchableOpacity onPress={() => backOne()}>
+              <Image
+                style={styles.imageContainer}
+                source={require("../assets/images/back.png")}
+              />
+            </TouchableOpacity> */}
+             <TouchableOpacity onPress={() => backOne()}>
+                <Image
+                  style={styles.weixinImage}
+                  source={require("../assets/images/dingding.png")}
+                />
+              </TouchableOpacity>
+            {/* <Button title="回退" onPress={() => backOne()}>
+              回退
+            </Button> */}
+          </View>
+        </View>
+        
+
+
         <View style={styles.inputContainer}>
+
           <View style={styles.inputContainer1}></View>
           <View style={styles.inputContainer2}>
             <View style={styles.inputStyle}>
@@ -387,8 +472,8 @@ export default function EditScreenInfo(props: any) {
             </Button> */}
               <TouchableOpacity onPress={() => handleInput("XIN")}>
                 <Image
-                  style={styles.imageContainer1}
-                  source={require("../assets/images/xin1.png")}
+                  style={styles.weixinImage}
+                  source={require("../assets/images/xin2.png")}
                 />
               </TouchableOpacity>
             </View>
@@ -413,7 +498,7 @@ export default function EditScreenInfo(props: any) {
             /> */}
               <TouchableOpacity onPress={() => handleInput("BOY")}>
                 <Image
-                  style={styles.imageContainer1}
+                  style={styles.zhifuImage}
                   source={require("../assets/images/boy1.png")}
                 />
               </TouchableOpacity>
@@ -444,8 +529,39 @@ export default function EditScreenInfo(props: any) {
       <ScrollView
         style={{
           height: "100%",
+         
+
         }}
       >
+        {/* <View style={styles.centeredView}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            // onRequestClose={() => {
+            //   // Alert.alert("Modal has been closed.");
+            //   setModalVisible(!modalVisible);
+            // }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>使用时间到期</Text>
+
+                {/* <TouchableHighlight
+                style={{
+                  ...styles.openButton,
+                  backgroundColor: "#2196F3",
+                }}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <Text style={styles.textStyle1}>Hide Modal</Text>
+              </TouchableHighlight> */}
+        {/* </View>
+            </View>
+          </Modal>
+        </View> */}
         <View style={styles.container}>{renderFunction()}</View>
         <View
           style={{
@@ -456,22 +572,7 @@ export default function EditScreenInfo(props: any) {
             paddingTop: 30,
           }}
         >
-          <View style={styles.inputStyle1}>
-            <Button title="重开" onPress={() => clearAll()}>
-              重开
-            </Button>
-          </View>
-          <View style={styles.inputStyle1}>
-            {/* <TouchableOpacity onPress={() => backOne()}>
-              <Image
-                style={styles.imageContainer}
-                source={require("../assets/images/back.png")}
-              />
-            </TouchableOpacity> */}
-            <Button title="回退" onPress={() => backOne()}>
-              回退
-            </Button>
-          </View>
+
           <View style={styles.inputStyle1}>
             <Text>{tips}</Text>
           </View>
@@ -479,7 +580,7 @@ export default function EditScreenInfo(props: any) {
             {/* <Button title="清除" onPress={() => clearAll()}>
               清除
             </Button> */}
-            <TouchableOpacity onPress={() => handleInput("XIN")}>
+            <TouchableOpacity style={{borderRadius: 16}} onPress={() => handleInput("XIN")}>
               <Image
                 style={styles.imageContainer1}
                 source={require("../assets/images/xin1.png")}
@@ -497,7 +598,7 @@ export default function EditScreenInfo(props: any) {
             /> */}
             <TouchableOpacity onPress={() => handleInput("BOY")}>
               <Image
-                style={styles.imageContainer1}
+                style={styles.zhifuImage}
                 source={require("../assets/images/boy1.png")}
               />
             </TouchableOpacity>
@@ -608,9 +709,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0, 0, 0, 0)",
   },
+
+  operateContainer: {
+    position: "absolute",
+    width: '100%',
+    top: '20%',
+    backgroundColor: "rgba(0, 0, 0, 0)",
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'row'
+  },
+
   inputStyle1: {
     width: "16.667%",
     height: 40,
+    backgroundColor: "rgba(0, 0, 0, 0)",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -630,6 +743,18 @@ const styles = StyleSheet.create({
   imageContainer1: {
     width: 48,
     height: 48,
+
+  },
+  weixinImage: {
+    width: 48,
+    height: 48,
+    borderRadius: 25,
+    backgroundColor: "#ffffff",
+  },
+  zhifuImage:{
+    width: 48,
+    height: 48,
+    borderRadius: 10
   },
   tipContainer: {
     alignItems: "center",
@@ -698,5 +823,47 @@ const styles = StyleSheet.create({
   },
   abledIcon: {
     backgroundColor: "#fff",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 13.84,
+    // elevation: 15,
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle1: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalText: {
+    // marginBottom: 50,
+    fontSize: 48,
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
