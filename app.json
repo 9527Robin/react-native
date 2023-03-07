@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "校园娱乐A",
+    "name": "斗破苍穹",
     "slug": "app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -28,6 +28,11 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5da549c1-3816-4831-bc65-7bc2743c7ebd"
+      }
     }
   }
 }

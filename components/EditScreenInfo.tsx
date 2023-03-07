@@ -56,10 +56,7 @@ export default function EditScreenInfo(props: any) {
 
     for (let i = 0; i < numbers; i++) {
       el.push(
-        <TouchableOpacity
-          key={`watch${i}`}
-          style={handleStatus(i) ? enableIcon : disabledIcon}
-        >
+        <TouchableOpacity key={`watch${i}`} style={handleStatus(i) ? enableIcon : disabledIcon}>
           <View>
             {_.get(tableOne, i, "") ? (
               <Image style={styles.imageContainer} source={handleIcon(i)} />
@@ -91,10 +88,7 @@ export default function EditScreenInfo(props: any) {
       const currentIndex3 = _.get(temp, [len - 1, "length"], 0); // 当前的数据位置
       const preValue3 = _.get(temp, [len - 2, currentIndex3 - 1], ""); // 获取前一个相同位置的值
       let currentThree = ""; // 表格三当前计算出来的值
-      if (
-        (preValue3 === "BOY" && value === "GIRL") ||
-        (preValue3 === "GIRL" && value === "BOY")
-      ) {
+      if ((preValue3 === "BOY" && value === "GIRL") || (preValue3 === "GIRL" && value === "BOY")) {
         currentThree = "CAT";
         // temp3.push("CAT");
       } else {
@@ -137,55 +131,41 @@ export default function EditScreenInfo(props: any) {
     const len = two.length;
     //const len1 = two[len - 1].length - 1; //
     //const cur_len = two[len].length - 1;//表格二当前列的长度 旧
-    const cur_len = two[len-1].length; //表格二当前长度
+    const cur_len = two[len - 1].length; //表格二当前长度
     // 当性别变化
-    if ((len > 2 && two[2].length > 1) || len > 3) {      //现在要去从第二界面第三列第二个开始
-      
+    if ((len > 2 && two[2].length > 1) || len > 3) {
+      //现在要去从第二界面第三列第二个开始
+
       const compareValue = _.get(two, [len - 3, cur_len - 1]); // 表格二的当前值的对应位置的前两列的值
-      const len1 = two[len - 2]["length"] ; // 上一列的长度
-      const len2 = two[len - 3]["length"] ; // 上一列的上一列的长度
+      const len1 = two[len - 2]["length"]; // 上一列的长度
+      const len2 = two[len - 3]["length"]; // 上一列的上一列的长度
       const len4 = cur_len - len2; //当前列与对应列的差
-      
+
       let len3;
-      if(len > 3)
-      {
-        len3 = two[len - 4]["length"] ; // 上一列的上一列的上一列的长度;
+      if (len > 3) {
+        len3 = two[len - 4]["length"]; // 上一列的上一列的上一列的长度;
       }
-      
-      
-      
+
       //const compareValue = _.get(two, [len - 1, cur_len-1]); // 表格二的当前值
       //const cur_len1 = two[len-3].length;//
-      
+
       //const compareValue2 = _.get(two, [len - 1, cur_len - 1]); // 前1个的值
       //const compareValue3 = _.get(two, [len - 1, cur_len - 2]); // 前1个的值
-      if(cur_len>1)
-      {
-        if(compareValue)
-        {
-          temp  = "CAT";
-        }
-        else
-        {
-          if(len4 == 1)
-          {
-            temp  = "DOG";
-          }
-          else
-          {
-            temp  = "CAT";
+      if (cur_len > 1) {
+        if (compareValue) {
+          temp = "CAT";
+        } else {
+          if (len4 == 1) {
+            temp = "DOG";
+          } else {
+            temp = "CAT";
           }
         }
-      }
-      else
-      {
-        if(len1 == len3)
-        {
-          temp  = "CAT";
-        }
-        else
-        {
-          temp  = "DOG";
+      } else {
+        if (len1 == len3) {
+          temp = "CAT";
+        } else {
+          temp = "DOG";
         }
       }
 
@@ -254,33 +234,20 @@ export default function EditScreenInfo(props: any) {
       const lastLen = viewThree[curlen - 2].length; // 需要对称的排
 
       const current3Value = _.get(viewThree, [curlen, 0]); // 当前的table3的值
-      const figureValue = handleResult(
-        "BOY",
-        index + 1,
-        table1,
-        table2,
-        res,
-        true
-      ); // 计算出当前值对应的猫或狗
+      const figureValue = handleResult("BOY", index + 1, table1, table2, res, true); // 计算出当前值对应的猫或狗
       if (lastLen === currentLen) {
         if (current3Value == figureValue) {
           temp = (
             <View style={styles.tipContainer}>
               <Text style={styles.textStyle}>{tableOne.length + 2}</Text>
-              <Image
-                style={styles.imageContainer1}
-                source={require("../assets/images/girl.png")}
-              />
+              <Image style={styles.imageContainer1} source={require("../assets/images/girl.png")} />
             </View>
           );
         } else {
           temp = (
             <View style={styles.tipContainer}>
               <Text style={styles.textStyle}>{tableOne.length + 2}</Text>
-              <Image
-                style={styles.imageContainer1}
-                source={require("../assets/images/boy.png")}
-              />
+              <Image style={styles.imageContainer1} source={require("../assets/images/boy.png")} />
             </View>
           );
         }
@@ -289,20 +256,14 @@ export default function EditScreenInfo(props: any) {
           temp = (
             <View style={styles.tipContainer}>
               <Text style={styles.textStyle}>{tableOne.length + 2}</Text>
-              <Image
-                style={styles.imageContainer1}
-                source={require("../assets/images/boy.png")}
-              />
+              <Image style={styles.imageContainer1} source={require("../assets/images/boy.png")} />
             </View>
           );
         } else {
           temp = (
             <View style={styles.tipContainer}>
               <Text style={styles.textStyle}>{tableOne.length + 2}</Text>
-              <Image
-                style={styles.imageContainer1}
-                source={require("../assets/images/girl.png")}
-              />
+              <Image style={styles.imageContainer1} source={require("../assets/images/girl.png")} />
             </View>
           );
         }
@@ -405,15 +366,12 @@ export default function EditScreenInfo(props: any) {
   }
 
   return (
-    <Swiper 
-    loop={false}
-    // showsButtons={true}
-    // index={1}
-   >
-      <ImageBackground
-        style={{ flex: 1 }}
-        source={require("../assets/images/bg.jpg")}
-      >
+    <Swiper
+      loop={false}
+      // showsButtons={true}
+      // index={1}
+    >
+      <ImageBackground style={{ flex: 1 }} source={require("../assets/images/bg.jpg")}>
         {/* <View style={styles.centeredView}>
           <Modal
             animationType="slide"
@@ -421,19 +379,16 @@ export default function EditScreenInfo(props: any) {
             visible={modalVisible}>
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>使用时间到期</Text> 
+                <Text style={styles.modalText}>使用时间到期</Text>
               </View>
             </View>
           </Modal>
         </View> */}
         <View style={styles.operateContainer}>
-        <View style={styles.inputStyle1}>
-        <TouchableOpacity onPress={() => clearAll()}>
-                <Image
-                  style={styles.weixinImage}
-                  source={require("../assets/images/bili.png")}
-                />
-              </TouchableOpacity>
+          <View style={styles.inputStyle1}>
+            <TouchableOpacity onPress={() => clearAll()}>
+              <Image style={styles.weixinImage} source={require("../assets/images/bili.png")} />
+            </TouchableOpacity>
             {/* <Button title="重开" onPress={() => clearAll()}>
               重开
             </Button> */}
@@ -445,22 +400,16 @@ export default function EditScreenInfo(props: any) {
                 source={require("../assets/images/back.png")}
               />
             </TouchableOpacity> */}
-             <TouchableOpacity onPress={() => backOne()}>
-                <Image
-                  style={styles.weixinImage}
-                  source={require("../assets/images/dingding.png")}
-                />
-              </TouchableOpacity>
+            <TouchableOpacity onPress={() => backOne()}>
+              <Image style={styles.weixinImage} source={require("../assets/images/dingding.png")} />
+            </TouchableOpacity>
             {/* <Button title="回退" onPress={() => backOne()}>
               回退
             </Button> */}
           </View>
         </View>
-        
-
 
         <View style={styles.inputContainer}>
-
           <View style={styles.inputContainer1}></View>
           <View style={styles.inputContainer2}>
             <View style={styles.inputStyle}>
@@ -471,10 +420,7 @@ export default function EditScreenInfo(props: any) {
               清除
             </Button> */}
               <TouchableOpacity onPress={() => handleInput("XIN")}>
-                <Image
-                  style={styles.weixinImage}
-                  source={require("../assets/images/xin2.png")}
-                />
+                <Image style={styles.weixinImage} source={require("../assets/images/xin2.png")} />
               </TouchableOpacity>
             </View>
             {/* <View
@@ -497,10 +443,7 @@ export default function EditScreenInfo(props: any) {
               value={inputValue === "BOY"}
             /> */}
               <TouchableOpacity onPress={() => handleInput("BOY")}>
-                <Image
-                  style={styles.zhifuImage}
-                  source={require("../assets/images/boy1.png")}
-                />
+                <Image style={styles.zhifuImage} source={require("../assets/images/boy1.png")} />
               </TouchableOpacity>
             </View>
             <View style={styles.inputStyle}>
@@ -526,14 +469,12 @@ export default function EditScreenInfo(props: any) {
         </View>
       </ImageBackground>
 
-      <ScrollView
+      {/* <ScrollView
         style={{
           height: "100%",
-         
-
         }}
-      >
-        {/* <View style={styles.centeredView}>
+      > */}
+      {/* <View style={styles.centeredView}>
           <Modal
             animationType="slide"
             transparent={true}
@@ -558,11 +499,11 @@ export default function EditScreenInfo(props: any) {
               >
                 <Text style={styles.textStyle1}>Hide Modal</Text>
               </TouchableHighlight> */}
-        {/* </View>
+      {/* </View>
             </View>
           </Modal>
         </View> */}
-        <View style={styles.container}>{renderFunction()}</View>
+      {/* <View style={styles.container}>{renderFunction()}</View>
         <View
           style={{
             flexDirection: "column",
@@ -572,23 +513,19 @@ export default function EditScreenInfo(props: any) {
             paddingTop: 30,
           }}
         >
-
           <View style={styles.inputStyle1}>
             <Text>{tips}</Text>
           </View>
-          <View style={styles.inputStyle1}>
-            {/* <Button title="清除" onPress={() => clearAll()}>
+          <View style={styles.inputStyle1}> */}
+      {/* <Button title="清除" onPress={() => clearAll()}>
               清除
             </Button> */}
-            <TouchableOpacity style={{borderRadius: 16}} onPress={() => handleInput("XIN")}>
-              <Image
-                style={styles.imageContainer1}
-                source={require("../assets/images/xin1.png")}
-              />
+      {/* <TouchableOpacity style={{ borderRadius: 16 }} onPress={() => handleInput("XIN")}>
+              <Image style={styles.imageContainer1} source={require("../assets/images/xin1.png")} />
             </TouchableOpacity>
-          </View>
-          <View style={styles.inputStyle1}>
-            {/* <Text>BOY</Text>
+          </View> */}
+      {/* <View style={styles.inputStyle1}> */}
+      {/* <Text>BOY</Text>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={inputValue === "BOY" ? "#f5dd4b" : "#f4f3f4"}
@@ -596,16 +533,13 @@ export default function EditScreenInfo(props: any) {
               onValueChange={() => setInputValue("BOY")}
               value={inputValue === "BOY"}
             /> */}
-            <TouchableOpacity onPress={() => handleInput("BOY")}>
-              <Image
-                style={styles.zhifuImage}
-                source={require("../assets/images/boy1.png")}
-              />
+      {/* <TouchableOpacity onPress={() => handleInput("BOY")}>
+              <Image style={styles.zhifuImage} source={require("../assets/images/boy1.png")} />
             </TouchableOpacity>
-          </View>
+          </View> */}
 
-          <View style={styles.inputStyle1}>
-            {/* <Text>GIRL</Text>
+      {/* <View style={styles.inputStyle1}> */}
+      {/* <Text>GIRL</Text>
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}
               thumbColor={inputValue === "GIRL" ? "#f5dd4b" : "#f4f3f4"}
@@ -613,7 +547,7 @@ export default function EditScreenInfo(props: any) {
               onValueChange={() => setInputValue("GIRL")}
               value={inputValue === "GIRL"}
             /> */}
-            <TouchableOpacity onPress={() => handleInput("GIRL")}>
+      {/* <TouchableOpacity onPress={() => handleInput("GIRL")}>
               <View style={styles.tipContainer}>
                 <Text style={styles.textStyle}>{tableOne.length + 1}</Text>
                 <Image
@@ -623,9 +557,9 @@ export default function EditScreenInfo(props: any) {
               </View>
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
 
-        {/* <View>
+      {/* <View>
           <Text>{tips}</Text>
         </View>
         <Text>界面二</Text>
@@ -637,7 +571,7 @@ export default function EditScreenInfo(props: any) {
         <ScrollView horizontal={true}>
           <TableThree tableData={tableThree} />
         </ScrollView> */}
-      </ScrollView>
+      {/* </ScrollView> */}
     </Swiper>
   );
 }
@@ -652,10 +586,7 @@ function TableTwo(props: { tableData: Array<Array<string>> }) {
       return (
         <View style={styles.tableTwoItem} key={`TableTwo${index}`}>
           {data ? (
-            <Image
-              style={{ width: 32, height: 32 }}
-              source={data === "BOY" ? boyIcon : girlIcon}
-            />
+            <Image style={{ width: 32, height: 32 }} source={data === "BOY" ? boyIcon : girlIcon} />
           ) : null}
         </View>
       );
@@ -681,10 +612,7 @@ function TableThree(props: { tableData: Array<Array<string>> }) {
       return (
         <View style={styles.tableTwoItem} key={`TableThree${index}`}>
           {data ? (
-            <Image
-              style={styles.imageContainer}
-              source={data === "CAT" ? boyIcon : girlIcon}
-            />
+            <Image style={styles.imageContainer} source={data === "CAT" ? boyIcon : girlIcon} />
           ) : null}
         </View>
       );
@@ -693,9 +621,7 @@ function TableThree(props: { tableData: Array<Array<string>> }) {
   return (
     <View style={styles.tableTwoContainer}>
       {tableData.map((data, index) => {
-        return (
-          <View key={`TableThreeRender${index}`}>{renderFunction(data)}</View>
-        );
+        return <View key={`TableThreeRender${index}`}>{renderFunction(data)}</View>;
       })}
     </View>
   );
@@ -712,12 +638,13 @@ const styles = StyleSheet.create({
 
   operateContainer: {
     position: "absolute",
-    width: '100%',
-    top: '20%',
+    width: "100%",
+    top: "20%",
     backgroundColor: "rgba(0, 0, 0, 0)",
-    display: 'flex',
-    justifyContent: 'space-around',
-    flexDirection: 'row'
+    display: "flex",
+    zIndex: 99,
+    justifyContent: "space-around",
+    flexDirection: "row",
   },
 
   inputStyle1: {
@@ -743,7 +670,6 @@ const styles = StyleSheet.create({
   imageContainer1: {
     width: 48,
     height: 48,
-
   },
   weixinImage: {
     width: 48,
@@ -751,10 +677,10 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: "#ffffff",
   },
-  zhifuImage:{
+  zhifuImage: {
     width: 48,
     height: 48,
-    borderRadius: 10
+    borderRadius: 10,
   },
   tipContainer: {
     alignItems: "center",
